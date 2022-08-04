@@ -5,14 +5,11 @@ class Solution {
         int[] answer = new int[commands.length];
         
         for(int a=0;a<commands.length;a++){
-        	int i = commands[a][0];
-        	int j = commands[a][1];
-        	int k = commands[a][2];
         	
-        	int[] cutArr = Arrays.copyOfRange(array, i-1, j);
+        	int[] cutArr = Arrays.copyOfRange(array, commands[a][0]-1, commands[a][1]);
         	Arrays.sort(cutArr);
         	
-        	answer[a] = cutArr[k-1];
+        	answer[a] = cutArr[commands[a][2]-1];
         }
         
         return answer;
