@@ -20,9 +20,7 @@ public class Main {
 			int n = Integer.parseInt(st.nextToken());
 			int m = Integer.parseInt(st.nextToken());
 			
-			if(n < 12)
-				bw.write(-1+"\n");
-			else if(n >= 12 && m < 4)
+			if(n < 12 || m < 4)
 				bw.write(-1+"\n");
 			else 
 				bw.write((11*m)+4+"\n");
