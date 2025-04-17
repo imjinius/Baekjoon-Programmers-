@@ -8,30 +8,29 @@ import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            String[] input = br.readLine().split(" ");
-            int a = Integer.parseInt(input[0]);
-            int b = Integer.parseInt(input[1]);
-            int[] basket = IntStream.rangeClosed(1, a).toArray();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] input = br.readLine().split(" ");
+        int a = Integer.parseInt(input[0]);
+        int b = Integer.parseInt(input[1]);
+        int[] basket = IntStream.rangeClosed(1, a).toArray();
 
-            IntStream.range(0, b).forEach(i -> {
-                try {
-                        int[] change = Arrays.stream(br.readLine().split(" "))
-                                .mapToInt(Integer::parseInt)
-                                .toArray();
+        for(int i=0;i<b;i++) {
+            String[] change = br.readLine().split(" ");
+            int idx1 = Integer.parseInt(change[0]) - 1;
+            int idx2 = Integer.parseInt(change[1]) - 1;
 
-                        int temp = basket[change[0] - 1];
-                        basket[change[0] - 1] = basket[change[1] - 1];
-                        basket[change[1] - 1] = temp;
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-            });
+            int temp = basket[idx1];
+            basket[idx1] = basket[idx2];
+            basket[idx2] = temp;
+        }
 
-            String result = Arrays.stream(basket)
-                    .mapToObj(String::valueOf)
-                            .collect(Collectors.joining(" "));
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i<basket.length; i++){
+            sb.append(basket[i]);
+            if (i != basket.length - 1) sb.append(" ");
+        }
 
-            System.out.println(result);
+        System.out.println(sb);
+
     }
 }
